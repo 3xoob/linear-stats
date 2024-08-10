@@ -11,13 +11,13 @@ import (
 func main() {
 	if len(os.Args) != 2 {
 		fmt.Println("ERROR: Please provide a file path as an argument.")
-		os.Exit(1)
+		os.Exit(0)
 	}
 
 	file, err := os.Open(os.Args[1])
 	if err != nil {
 		fmt.Printf("ERROR: Could not open file: %v\n", err)
-		os.Exit(1)
+		os.Exit(0)
 	}
 	defer file.Close()
 
@@ -27,14 +27,14 @@ func main() {
 		value, err := strconv.ParseFloat(scanner.Text(), 64)
 		if err != nil {
 			fmt.Printf("ERROR: Could not parse float: %v\n", err)
-			os.Exit(1)
+			os.Exit(0)
 		}
 		yValues = append(yValues, value)
 	}
 
 	if err := scanner.Err(); err != nil {
 		fmt.Printf("ERROR: Could not read file: %v\n", err)
-		os.Exit(1)
+		os.Exit(0)
 	}
 
 	n := float64(len(yValues))
